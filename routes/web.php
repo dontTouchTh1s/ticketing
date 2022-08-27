@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function() {
     Route::prefix('tickets')->group(function() {
-        Route::get('/', [TicketController::class, 'create']);
+        Route::get('/', [TicketController::class, 'index']);
         Route::get('create', [TicketController::class, 'create']);
         Route::post('store', [TicketController::class, 'store']);
         Route::get('show', [TicketController::class, 'show']);
