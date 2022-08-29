@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('active');
             $table->string('ip');
             $table->timestamps();
+
         });
     }
 
