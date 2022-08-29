@@ -16,14 +16,7 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
-        Customer::factory()
-            ->hasAttached(Service::factory()->count(5), [
-                'started_at' => date('Y/m/d'),
-                'end_at' => date('Y/m/d'),
-                'active' => fake()->boolean
-                ])
-            ->hasTickets(10)
-            ->create();
+
 
     }
 }
