@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Depratment;
+use App\Models\Department;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,8 +15,8 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
-        Depratment::factory()
-            ->hasTickets(3)
+        Department::factory()
+            ->count(10)
             ->create();
     }
 }
