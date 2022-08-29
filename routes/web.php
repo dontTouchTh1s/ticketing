@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,11 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->middleware('auth')->group(function() {
+    Route::get('dashboard', [HomeController::class, 'dashboard']);
     Route::prefix('tickets')->group(function() {
         Route::get('/', [TicketController::class, 'index']);
-        Route::get('create', [TicketController::class, 'create']);
-        Route::post('store', [TicketController::class, 'store']);
+        Route::get('create', [TicketController::class, 'create'])->name('ticket.create');
+        Route::post('store', [TicketController::class, 'store'])->name('ticket.store');
         Route::get('show', [TicketController::class, 'show']);
         Route::get('edit', [TicketController::class, 'edit']);
         Route::patch('update', [TicketController::class, 'update']);
