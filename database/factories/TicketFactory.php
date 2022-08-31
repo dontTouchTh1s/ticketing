@@ -28,7 +28,10 @@ class TicketFactory extends Factory
             'content' => fake()->text(),
             'priority' => fake()->numberBetween(1,3),
             'active' => fake()->boolean(),
-            'ip' => fake()->ipv4()
+            'ip' => fake()->ipv4(),
+            'customer_id' => fake()->numberBetween(1,10),
+            'service_id' => fake()->numberBetween(1,10),
+            'department_id' => fake()->numberBetween(1,10)
         ];
     }
 }
