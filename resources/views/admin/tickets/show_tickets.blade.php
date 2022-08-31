@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @foreach($tickets as $ticket)
-            <div class="card">
+            <div class="card mb-2">
                 <div class="card-header">{{ __($ticket->subject) }}</div>
 
                 <div class="card-body">
@@ -14,6 +14,7 @@
                 </div>
             </div>
             @endforeach
+            {{ $tickets->links() }}
         </div>
     </div>
 </div>
