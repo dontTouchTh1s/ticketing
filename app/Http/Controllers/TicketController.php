@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTicketRequest;
+use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Department;
 use App\Models\Service;
 use App\Models\Ticket;
-use App\Http\Requests\StoreTicketRequest;
-use App\Http\Requests\UpdateTicketRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 class TicketController extends Controller
@@ -19,42 +23,28 @@ class TicketController extends Controller
      */
     public function index()
     {
-        return view('admin.tickets.show_tickets', [
-            'tickets' => Ticket::paginate(3)
+        $tickets = Ticket::all();
+        $tickets_info = [];
+        foreach ($tickets as $ticket) {
+            $tickets_info[] = ['id' => $ticket->id,
+                'subject' => $ticket->subject,
+                'priority' => $ticket->priority,
+                'active' => $ticket->active ? "فعال" : "غیرفعال",
+                'customer' => $ticket->customer()->first()->name,
+                'service' => $ticket->service()->first()->title,
+                'department' => $ticket->department()->first()->name];
+        }
+        return view('tickets.show_tickets')->with([
+            'user' => Auth::user(),
+            'tickets' => $tickets_info
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return
-     */
-    public function create()
-    {
-        $departments = Department::all();
-        $department_info = [];
-        foreach ($departments as $department)
-        {
-            array_push($department_info, $department->attributesToArray());
-        }
-        $services = Service::all();
-        $service_info = [];
-        foreach ($services as $service)
-        {
-            array_push($service_info, $service->attributesToArray());
-        }
-
-        return view('admin.tickets.create_ticket')
-            ->with([
-                'services' => $service_info,
-                'departments' => $department_info]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTicketRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param StoreTicketRequest $request
+     * @return RedirectResponse
      */
     public function store(StoreTicketRequest $request)
     {
@@ -68,54 +58,85 @@ class TicketController extends Controller
             'active' => true,
             'priority' => 1,
             'ip' => Request::ip(),
-
         ];
         Ticket::create($ticket);
-        return redirect()->route('ticket.create');
+        return redirect()->route('tickets.create');
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for creating a new resource.
      *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function show(Ticket $ticket)
+    public function create()
     {
-        //
+        $departments = Department::all();
+        $services = Service::all();
+
+        return view('tickets.create_ticket')
+            ->with([
+                'user' => Auth::user(),
+                'services' => $services,
+                'departments' => $departments
+            ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
+     * @param Ticket $ticket
+     * @return Application|Factory|View
      */
-    public function edit(Ticket $ticket)
+    public function manage(Ticket $ticket)
     {
-        //
+        $tickets_info = ['id' => $ticket->id,
+            'subject' => $ticket->subject,
+            'content' => $ticket->content,
+            'priority' => $ticket->priority,
+            'active' => $ticket->active ? "فعال" : "غیرفعال",
+            'customer' => $ticket->customer()->first()->name,
+            'service' => $ticket->service()->first()->title,
+            'department' => $ticket->department()->first()->name];
+        $departments = Department::all();
+        return view('tickets.manage_ticket')->with([
+            'user' => Auth::user(),
+            'ticket' => $tickets_info,
+            'departments' => $departments
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTicketRequest  $request
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
+     * @param UpdateTicketRequest $request
+     * @param Ticket $ticket
+     * @return RedirectResponse
      */
-    public function update(UpdateTicketRequest $request, Ticket $ticket)
+    public function change_department(UpdateTicketRequest $request, Ticket $ticket, Department $department)
     {
-        //
+        $data = $request->validated();
+        $ticket->department_id = $data->id;
+        $ticket->save();
+        return redirect()->back();
+    }
+
+    public function deactivate(Ticket $ticket)
+    {
+        $ticket->active = 0;
+        $ticket->save();
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
+     * @param Ticket $ticket
+     * @return RedirectResponse
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        $ticket->delete();
+        return redirect()->back();
     }
 }
