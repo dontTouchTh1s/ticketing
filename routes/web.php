@@ -20,16 +20,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->middleware('auth')->group(function() {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', [HomeController::class, 'dashboard']);
-    Route::prefix('tickets')->group(function() {
-        Route::get('/', [TicketController::class, 'index']);
-        Route::get('create', [TicketController::class, 'create'])->name('ticket.create');
-        Route::post('store', [TicketController::class, 'store'])->name('ticket.store');
-        Route::get('show', [TicketController::class, 'show']);
-        Route::get('edit', [TicketController::class, 'edit']);
-        Route::patch('update', [TicketController::class, 'update']);
-        Route::delete('destroy', [TicketController::class, 'destroy']);
+    Route::prefix('tickets')->group(function () {
+        Route::get('/', [TicketController::class, 'index'])->name('tickets');
+        Route::get('create', [TicketController::class, 'create'])->name('tickets.create');
+        Route::post('store', [TicketController::class, 'store'])->name('tickets.store');
+        Route::get('manage{ticket}', [TicketController::class, 'manage'])->name('tickets.manage');
+        Route::patch('change-department{ticket}', [TicketController::class, 'change_department'])->name('tickets.change_department');
+        Route::patch('deactivate{ticket}', [TicketController::class, 'deactivate'])->name('tickets.deactivate');
+        Route::delete('destroy{ticket}', [TicketController::class, 'destroy'])->name('tickets.destroy');
 
 
     });
