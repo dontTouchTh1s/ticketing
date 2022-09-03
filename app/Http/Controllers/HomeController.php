@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,8 @@ class HomeController extends Controller
     }
     public function dashboard()
     {
-        return view('layouts.dashboard.dashboard');
+        return view('admin.dashboard.dashboard')->with([
+             'user' => Auth::user()
+        ]);
     }
 }
