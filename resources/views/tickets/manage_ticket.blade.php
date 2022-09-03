@@ -115,7 +115,8 @@
                     <div class="modal-body">
                         <p/> برای ارجاع دادن این تیکت به یک دپارتمان دیگر دپارتمان مورد نظر را انتخاب کنید و بر روی دکمه
                         تغییر کلیک کنید.
-                        <form action="{{ route('tickets.change_department', $ticket['id'])  }}" method="POST">
+                        <form action="{{ route('tickets.change_department', $ticket['id'])  }}" method="POST"
+                              id="change-department-form">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
@@ -136,7 +137,9 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
 
-                        <button type="submit" class="btn btn-primary">تغییر</button>
+                        <button type="submit" class="btn btn-primary" id="change-department-submit">
+                            تغییر
+                        </button>
 
                     </div>
                 </div>
