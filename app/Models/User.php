@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->morphMany(Reply::class, 'replyable');
     }
+
+    public function reports()
+    {
+        return $this->morphMany(Report::class, 'reportable');
+    }
 }

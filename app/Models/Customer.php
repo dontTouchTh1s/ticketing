@@ -23,4 +23,9 @@ class Customer extends Model
     {
         return $this->morphMany(Reply::class, 'replyable');
     }
+
+    public function rpeorts()
+    {
+        return $this->morphMany(Report::class, 'reportable');
+    }
 }

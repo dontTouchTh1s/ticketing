@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     use HasFactory;
+
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
+
+    public function reportable()
+    {
+        return $this->morphTo();
+    }
 }

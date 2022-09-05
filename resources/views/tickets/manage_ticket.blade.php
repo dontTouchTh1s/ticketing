@@ -41,6 +41,11 @@
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
+                                    <label for="service">{{ __('فرستنده') }}</label>
+                                    <input id="service" class="form-control" type="text" readonly
+                                           value="{{ __($ticket['customer']) }}">
+                                </div>
+                                <div class="form-group">
                                     <label for="service">{{ __('سرویس') }}</label>
                                     <input id="service" class="form-control" type="text" readonly
                                            value="{{ __($ticket['service']) }}">
@@ -59,11 +64,11 @@
                                 <div class="form-group">
                                     <label for="content" class="form-label">{{ __('متن') }}</label>
                                     <textarea id="content" name="content" class="form-control" rows="3" readonly>
-                                {{ __($ticket['content']) }}
-                            </textarea>
+                                        {{ __($ticket['content']) }}
+                                    </textarea>
                                 </div>
 
-                                <a class="btn btn-secondary" role="button" href="{{ route('replies', $ticket['id']) }}">
+                                <a class="btn btn-secondary" href="{{ route('replies', $ticket['id']) }}">
                                     {{ __("مشاهده پاسخ ها") }}
                                 </a>
                             </form>
