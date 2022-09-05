@@ -62,6 +62,10 @@
                                 {{ __($ticket['content']) }}
                             </textarea>
                                 </div>
+
+                                <a class="btn btn-secondary" role="button" href="{{ route('replies', $ticket['id']) }}">
+                                    {{ __("مشاهده پاسخ ها") }}
+                                </a>
                             </form>
                         </div>
                     </div>
@@ -91,12 +95,13 @@
                         <div class="card-body">
                             <p/>می توانید تیکت را از این قسمت غیر فعال کنید. پس از عملیات نمیتوان به تیکت پاسخ یا گزارشی
                             اضافه کرد.
-                            <form action="{{ route('tickets.deactivate', $ticket['id']) }}"
+                            <form action="{{ route('tickets.deactivate') }}"
                                   method="POST">
                                 @method('PATCH')
                                 @csrf
+                                <input type="hidden" name="ticket" value="{{ __($ticket['id']) }}">
                                 <button class="btn btn-outline-primary col-12"
-                                        type="submit">{{ __('مدیریت') }}</button>
+                                        type="submit">{{ __('غیر فعال کردن') }}</button>
                             </form>
                         </div>
                     </div>
@@ -115,11 +120,12 @@
                     <div class="modal-body">
                         <p/> برای ارجاع دادن این تیکت به یک دپارتمان دیگر دپارتمان مورد نظر را انتخاب کنید و بر روی دکمه
                         تغییر کلیک کنید.
-                        <form action="{{ route('tickets.change_department', $ticket['id'])  }}" method="POST"
+                        <form action="{{ route('tickets.change_department')  }}" method="POST"
                               id="change-department-form">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
+                                <input type="hidden" name="ticket" value="{{ __($ticket['id']) }}">
                                 <label for="department"></label>
                                 <select name="department" id="department" class="form-control">
                                     @foreach($departments as $department)
