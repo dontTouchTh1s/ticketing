@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +28,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('create', [TicketController::class, 'create'])->name('tickets.create');
         Route::post('store', [TicketController::class, 'store'])->name('tickets.store');
         Route::get('manage{ticket}', [TicketController::class, 'manage'])->name('tickets.manage');
-        Route::patch('change-department{ticket}', [TicketController::class, 'change_department'])->name('tickets.change_department');
-        Route::patch('deactivate{ticket}', [TicketController::class, 'deactivate'])->name('tickets.deactivate');
-        Route::delete('destroy{ticket}', [TicketController::class, 'destroy'])->name('tickets.destroy');
+        Route::patch('change-department', [TicketController::class, 'change_department'])->name('tickets.change_department');
+        Route::patch('deactivate', [TicketController::class, 'deactivate'])->name('tickets.deactivate');
+        Route::delete('destroy', [TicketController::class, 'destroy'])->name('tickets.destroy');
+        // Ticket replies routes
+        Route::prefix('replies')->group(function () {
+            Route::get('/{ticket}', [ReplyController::class, 'index'])->name('replies');
+            Route::get('/create')->name('replies.create');
+        });
 
 
     });
