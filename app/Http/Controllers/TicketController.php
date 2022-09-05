@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangeDepartemntTicketRequest;
 use App\Http\Requests\StoreTicketRequest;
-use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Department;
 use App\Models\Service;
 use App\Models\Ticket;
@@ -11,8 +11,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 
 class TicketController extends Controller
 {
@@ -109,21 +109,22 @@ class TicketController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateTicketRequest $request
-     * @param Ticket $ticket
+     * @param ChangeDepartemntTicketRequest $request
      * @return RedirectResponse
      */
-    public function change_department(UpdateTicketRequest $request, Ticket $ticket, Department $department)
+    public function change_department(ChangeDepartemntTicketRequest $request)
     {
         $data = $request->validated();
-        $ticket->department_id = $data->id;
+        $ticket = Ticket::find($data['ticket']);
+        $ticket->department_id = $data['department'];
         $ticket->save();
         return redirect()->back();
     }
 
-    public function deactivate(Ticket $ticket)
+    public function deactivate(Request $request)
     {
-        $ticket->active = 0;
+        $ticket = Ticket::find($request->input('ticket'));
+        $ticket->active = false;
         $ticket->save();
         return redirect()->back();
     }
