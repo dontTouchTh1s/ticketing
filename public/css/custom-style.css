@@ -283,3 +283,19 @@ ul {
 .modal-footer > * {
     margin: 0.25rem;
 }
+
+.reply-title {
+
+}
+
+.reply-from-customer {
+    justify-content: flex-start;
+}
+
+.reply-from-user {
+    justify-content: flex-end;
+}
+
+.reply-from-user .card-title {
+    text-align: left;
+}
