@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+        'ticket_id',
+        'replyable_id',
+        'replyable_type',
+        'content',
+        'rate',
+        'ip'
+    ];
 
     public function ticket()
     {
@@ -18,5 +27,5 @@ class Reply extends Model
     {
         return $this->morphTo();
     }
-    
+
 }

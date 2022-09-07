@@ -9,6 +9,13 @@ class Report extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ticket_id',
+        'content',
+        'reportable_id',
+        'reportable_type'
+    ];
+
     public function ticket()
     {
         return $this->belongsTo(Ticket::class);
