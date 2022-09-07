@@ -84,6 +84,7 @@
                         <div class="card-body">
                             <p/> میتوانید تیکت را به دپارتمان دیگری ارجاع بدهید.
                             <div class="col-12">
+                                <!-- Open Model -->
                                 <button class="btn btn-outline-primary col-12" data-toggle="modal"
                                         data-target="#changeDepartmentModal"
                                         type="submit">{{ __('تغییر دپارتمان') }}</button>
@@ -114,23 +115,23 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="changeDepartmentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="changeDepartmentModal" tabindex="-1" aria-labelledby="changeDepartmentModal"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">تغییر دپارتمان تیکت</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="changeDepartmentModal">تغییر دپارتمان تیکت</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p/> برای ارجاع دادن این تیکت به یک دپارتمان دیگر دپارتمان مورد نظر را انتخاب کنید و بر روی دکمه
                         تغییر کلیک کنید.
                         <form action="{{ route('tickets.change_department')  }}" method="POST"
-                              id="change-department-form">
+                              id="modal-form">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
-                                <input type="hidden" name="ticket" value="{{ __($ticket['id']) }}">
+                                <input type="hidden" name="ticket" value="{{ __($ticket['id']) }}"/>
                                 <label for="department"></label>
                                 <select name="department" id="department" class="form-control">
                                     @foreach($departments as $department)
@@ -146,9 +147,9 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
 
-                        <button type="submit" class="btn btn-primary" id="change-department-submit">
+                        <button type="submit" class="btn btn-primary" id="modal-form-submit">
                             تغییر
                         </button>
 
