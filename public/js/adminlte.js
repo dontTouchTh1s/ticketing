@@ -811,10 +811,32 @@
 
     Object.defineProperty(exports, '__esModule', {value: true});
 })));
-let submitButton = document.getElementById('change-department-submit');
-let form = document.getElementById('change-department-form');
+let submitButton = document.getElementById('modal-form-submit');
+let form = document.getElementById('modal-form');
+let replyTextarea = document.getElementById("reply-content");
+replyTextarea.oninput = function () {
+    replyTextarea.style.height = "";
 
+    replyTextarea.style.height = replyTextarea.scrollHeight + "px"
+}
 submitButton.addEventListener("click", function () {
     form.submit();
 })
+// initialize replies options and selections
+let selectedReply = null;
+let replies = document.getElementsByClassName('reply');
+let reportReplies = document.getElementsByClassName('report-reply');
+
+for (let reportRepliesKey of reportReplies) {
+    reportRepliesKey.addEventListener('click', ReportReply);
+}
+
+function ReportReply(element) {
+    let id = element.target.closest('.reply').getAttribute('id');
+    document.getElementById('reply-id').setAttribute('value', id);
+}
+
+
+for (let reply of replies) {
+}
 //# sourceMappingURL=adminlte.js.map
