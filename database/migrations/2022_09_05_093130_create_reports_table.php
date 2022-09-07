@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('ticket_id')->constrained();
             $table->morphs('reportable');
+            $table->string('content');
             $table->timestamps();
         });
     }
