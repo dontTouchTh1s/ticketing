@@ -1,11 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ticket\Reply;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Reply\StoreReplyRequest;
 use App\Models\Customer;
+use App\Models\Reply;
 use App\Models\Ticket;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Request;
 
 class ReplyController extends Controller
 {
@@ -38,15 +43,38 @@ class ReplyController extends Controller
             $repliesInfo [] = [
                 'justify' => $style,
                 'sender' => $sender,
-
-                'content' => $reply->content
+                'content' => $reply->content,
+                'id' => $reply->id
             ];
         }
         return view('tickets.replies.show_ticket_replies')
             ->with([
-                'user' => Auth::user(),
                 'ticket' => $tickets_info,
                 'replies' => $repliesInfo
             ]);
+    }
+
+    /**
+     * Display a listing of the ticket replies.
+     * @param StoreReplyRequest $request
+     * @return RedirectResponse
+     */
+    public function store(StoreReplyRequest $request)
+    {
+        $data = $request->validated();
+        $reply = [
+            'content' => $data['content'],
+            'ticket_id' => $data['ticket'],
+
+        ];
+        $reply = new Reply();
+        $reply->ticket_id = $data['ticket'];
+        $reply->content = $data['content'];
+        $reply->replyable_id = Auth::user()->id;
+        $reply->replyable_type = Auth::user()::class;
+        $reply->rate = 0;
+        $reply->ip = Request::ip();
+        $reply->save();
+        return redirect()->back();
     }
 }
