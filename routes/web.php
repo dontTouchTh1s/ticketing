@@ -28,7 +28,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', [HomeController::class, 'dashboard']);
     Route::prefix('tickets')->group(function () {
         Route::get('/', [TicketController::class, 'index'])->name('tickets');
-        Route::get('create', [CreateTicketController::class, 'index'])->name('tickets.create');
+        Route::get('create', [CreateTicketController::class, 'create'])->name('tickets.create');
         Route::post('store', [CreateTicketController::class, 'store'])->name('tickets.store');
         Route::get('manage{ticket}', [ManageTicketController::class, 'index'])->name('tickets.manage');
         Route::patch('change-department', [ManageTicketController::class, 'change_department'])->name('tickets.change_department');
