@@ -14,8 +14,8 @@ return new class extends Migration {
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ticket_id')->constrained();
             $table->morphs('reportable');
+            $table->morphs('sender');
             $table->string('content');
             $table->timestamps();
         });

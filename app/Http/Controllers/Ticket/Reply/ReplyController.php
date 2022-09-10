@@ -39,7 +39,6 @@ class ReplyController extends Controller
             else
                 $style = "reply-from-user";
             $sender = $reply->replyable()->first();
-            $a = $reply->created_at;
             $repliesInfo [] = [
                 'justify' => $style,
                 'sender' => $sender,

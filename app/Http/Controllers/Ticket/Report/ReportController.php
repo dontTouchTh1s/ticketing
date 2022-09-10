@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Report\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 use App\Models\Report;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -15,11 +16,24 @@ class ReportController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return View
      */
     public function index()
     {
-        //
+        $reports = Report::all();
+        $reportsInfo = [];
+        foreach ($reports as $report) {
+            $reportsInfo[] = [
+                'id' => $report->id,
+                'reportable' => $report->reportable()->first()->id,
+                'sender' => $report->sender()->first(),
+                'content' => $report->content,
+            ];
+        }
+        return view('tickets.reports.reports')
+            ->with([
+                'reports' => $reportsInfo
+            ]);
     }
 
     /**

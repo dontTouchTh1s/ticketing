@@ -26,6 +26,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', [HomeController::class, 'dashboard']);
+    // Tickets routes
     Route::prefix('tickets')->group(function () {
         Route::get('/', [TicketController::class, 'index'])->name('tickets');
         Route::get('create', [CreateTicketController::class, 'create'])->name('tickets.create');
@@ -35,9 +36,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::patch('deactivate', [ManageTicketController::class, 'deactivate'])->name('tickets.deactivate');
         // Ticket replies routes
         Route::prefix('replies')->group(function () {
-            Route::get('/{ticket}', [ReplyController::class, 'index'])->name('replies');
-            Route::post('/create', [ReplyController::class, 'store'])->name('replies.create');
-            Route::post('/report', [ReportController::class, 'store'])->name('replies.reports.create');
+            Route::get('{ticket}', [ReplyController::class, 'index'])->name('replies');
+            Route::post('create', [ReplyController::class, 'store'])->name('replies.create');
+        });
+        // Ticket reports routes
+        Route::prefix('reports')->group(function () {
+            Route::get('/', [ReportController::class, 'index'])->name('reports');
+            Route::post('create', [ReportController::class, 'store'])->name('reports.create');
         });
 
 

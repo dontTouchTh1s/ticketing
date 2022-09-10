@@ -195,7 +195,7 @@
                 <div class="modal-body">
                     <p/>در صورت مشاهده محتوای خلاف قوانین یا مواردی که نیاز به اطلاع رسانی به مدیر دارد میتوانید از
                     این قسمت گزارش دهید.
-                    <form action="{{ route('replies.reports.create')  }}" method="POST"
+                    <form action="{{ route('reports.create')  }}" method="POST"
                           id="modal-form">
                         @csrf
 
@@ -224,7 +224,7 @@
     <script>
         ClassicEditor
             .create(document.querySelector('#editor'), {
-                placeholder: 'پاسخ مورد نظر را بنویسید ...',
+                placeholder: 'Type the content here!',
                 language: {
                     // The UI will be English.
                     ui: 'en',

@@ -87,7 +87,7 @@
                                 <!-- Open Model -->
                                 <button class="btn btn-outline-primary col-12" data-toggle="modal"
                                         data-target="#changeDepartmentModal"
-                                        type="submit">{{ __('تغییر دپارتمان') }}</button>
+                                        type="button">{{ __('تغییر دپارتمان') }}</button>
                             </div>
                         </div>
 

@@ -823,7 +823,6 @@ submitButton.addEventListener("click", function () {
     form.submit();
 })
 // initialize replies options and selections
-let selectedReply = null;
 let replies = document.getElementsByClassName('reply');
 let reportReplies = document.getElementsByClassName('report-reply');
 
