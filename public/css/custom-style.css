@@ -407,3 +407,12 @@ ul {
 .ck-editor {
     width: 100% !important;
 }
+
+.ck.ck-editor__editable_inline {
+    direction: rtl;
+    text-align: right;
+}
+
+.ck.ck-editor__editable_inline ul {
+    list-style: inside;
+}
