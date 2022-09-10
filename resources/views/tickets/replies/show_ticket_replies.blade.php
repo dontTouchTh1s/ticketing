@@ -84,7 +84,7 @@
                                         <div class="reply">
                                             <div class="reply-header">
                                                 <h5 class="reply-title">
-                                                    {{ __('متن تیکت') }}
+                                                    {{ 'متن تیکت' }}
                                                 </h5>
                                                 <div class="dropdown">
                                                     <button class="reply-more-info dropdown-toggle"
@@ -107,12 +107,23 @@
 
                                             </div>
                                             <div class="reply-body">
-                                                {{ __($ticket['content']) }}
+                                                {{ $ticket['content'] }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @php
+                                    $lastTime = "unknow";
+                                @endphp
                                 @foreach($replies as $reply)
+                                    @php
+                                        $time = $reply['created_date'];
+                                        if ($time == $lastTime)
+                                            $time = "";
+                                        else
+                                            $lastTime = $time;
+                                    @endphp
+                                    <div class="time-scope">{{ $time }}</div>
                                     <div class="row {{ __($reply['justify']) }}">
                                         <div class="col-lg-6">
                                             <div class="reply" id="{{ __($reply['id']) }}">
@@ -141,7 +152,12 @@
 
                                                 </div>
                                                 <div class="reply-body">
-                                                    {{ __($reply['content']) }}
+
+                                                    {!! $reply['content'] !!}
+
+                                                </div>
+                                                <div class="reply-footer">
+                                                    {{ $reply['created_time'] }}
                                                 </div>
                                             </div>
                                         </div>
@@ -152,10 +168,8 @@
                             <div class="add-reply">
                                 <form class="add-reply" method="post" action="{{ route('replies.create') }}">
                                     @csrf
-                                    <input type="hidden" name="ticket" value="{{ __($ticket['id']) }}">
-                                    <div id="editor">
-                                        <p>متن پاسخ خود را بنویسید ...</p>
-                                    </div>
+                                    <input type="hidden" name="ticket" value="{{ $ticket['id'] }}">
+                                    <textarea name="content" id="editor"></textarea>
 
 
                                     <button class="btn btn-primary btn-reply-send">
@@ -168,7 +182,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="reportReplyModal" tabindex="-1" aria-labelledby="reportReplyModal"
@@ -209,9 +222,9 @@
     </div>
     <script src="/plugins/ckeditor/ckeditor.js"></script>
     <script>
-
         ClassicEditor
             .create(document.querySelector('#editor'), {
+                placeholder: 'پاسخ مورد نظر را بنویسید ...',
                 language: {
                     // The UI will be English.
                     ui: 'en',
@@ -228,7 +241,7 @@
                 },
             })
             .then(editor => {
-                window.editor = editor;
+                console.log(editor);
             })
             .catch(error => {
                 console.error(error);

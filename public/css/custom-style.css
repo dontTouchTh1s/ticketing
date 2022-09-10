@@ -298,10 +298,6 @@ ul {
     margin-bottom: 1rem !important;
 }
 
-.reply-title {
-
-}
-
 .reply-more-info {
     font-family: cursive;
     font-weight: 900;
@@ -331,7 +327,7 @@ ul {
 }
 
 .reply-title {
-    opacity: 50%;
+    opacity: 72%;
     margin-bottom: 0;
 }
 
@@ -350,6 +346,12 @@ ul {
     border-bottom-right-radius: 0.5rem;
 }
 
+.reply-footer {
+    padding: 4px 8px 4px 4px;
+    font-size: 12px;
+    opacity: 72%;
+}
+
 .reply-from-customer {
     justify-content: flex-start;
 }
@@ -361,6 +363,21 @@ ul {
 .reply-from-user {
     justify-content: flex-end;
 }
+
+.reply-from-customer .reply {
+    background-color: #e1e2ec;
+    color: #44474f;
+}
+
+.reply-from-user .reply {
+    background-color: #d8e2ff;
+    color: #001a41;
+}
+
+.reply-from-user .reply-title {
+    color: #001a41;
+}
+
 
 .reply-from-user .reply-header {
     flex-direction: row-reverse;
@@ -415,4 +432,14 @@ ul {
 
 .ck.ck-editor__editable_inline ul {
     list-style: inside;
+}
+
+.time-scope {
+    color: #cccccc;
+    text-align: center;
+}
+
+.ck.ck-editor__editable > .ck-placeholder::before {
+    color: #d21714;
+
 }

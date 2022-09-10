@@ -39,12 +39,15 @@ class ReplyController extends Controller
             else
                 $style = "reply-from-user";
             $sender = $reply->replyable()->first();
-
+            $a = $reply->created_at;
             $repliesInfo [] = [
                 'justify' => $style,
                 'sender' => $sender,
                 'content' => $reply->content,
-                'id' => $reply->id
+                'id' => $reply->id,
+                'created_date' => $reply->created_at->toDateString(),
+                'created_time' => $reply->created_at->toTimeString()
+
             ];
         }
         return view('tickets.replies.show_ticket_replies')
@@ -63,18 +66,14 @@ class ReplyController extends Controller
     {
         $data = $request->validated();
         $reply = [
-            'content' => $data['content'],
             'ticket_id' => $data['ticket'],
-
+            'replyable_id' => Auth::user()->id,
+            'replyable_type' => Auth::user()::class,
+            'content' => $data['content'],
+            'rate' => 0,
+            'ip' => Request::ip()
         ];
-        $reply = new Reply();
-        $reply->ticket_id = $data['ticket'];
-        $reply->content = $data['content'];
-        $reply->replyable_id = Auth::user()->id;
-        $reply->replyable_type = Auth::user()::class;
-        $reply->rate = 0;
-        $reply->ip = Request::ip();
-        $reply->save();
+        Reply::create($reply);
         return redirect()->back();
     }
 }
