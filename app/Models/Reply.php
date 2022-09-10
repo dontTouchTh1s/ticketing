@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'ticket_id',
         'replyable_id',
@@ -21,6 +21,16 @@ class Reply extends Model
     public function ticket()
     {
         return $this->belongsTo(Ticket::class);
+    }
+
+    public function reports()
+    {
+        return $this->morphMany(Report::class, 'reportable');
+    }
+
+    public function getReportableName()
+    {
+        return $this->replyable()->first()->name;
     }
 
     public function replyable()
