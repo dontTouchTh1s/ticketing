@@ -52,7 +52,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-pie-chart"></i>
                         <p>
-                            چارت‌ها
+                            اعلامیه ها
                             <i class="right fa fa-angle-left"></i>
                         </p>
                     </a>
