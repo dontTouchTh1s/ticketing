@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             DepartmentSeeder::class,
             TicketSeeder::class,
-            ReplySeeder::class
+            ReplySeeder::class,
+            ReportSeeder::class
         ]);
 
     }
