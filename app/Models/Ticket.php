@@ -37,4 +37,14 @@ class Ticket extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    public function reports()
+    {
+        return $this->morphMany(Report::class, 'reportable');
+    }
 }

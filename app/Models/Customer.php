@@ -18,4 +18,14 @@ class Customer extends Model
     {
         return $this->belongsToMany(Service::class);
     }
+
+    public function replies()
+    {
+        return $this->morphMany(Reply::class, 'replyable');
+    }
+
+    public function reports()
+    {
+        return $this->morphMany(Report::class, 'sender');
+    }
 }

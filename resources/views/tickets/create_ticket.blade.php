@@ -33,40 +33,48 @@
             </div>
             <div class="row">
                 <div class="col-md-8">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">ساخت تیکت جدید</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('tickets.store') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="service">{{ __('سرویس') }}</label>
+                                    <select id="service" name="service_id" class="form-control">
+                                        <option value="" disabled selected>{{ __('یک سرویس انتخاب کنید ...') }}</option>
+                                        @foreach($services as $service)
+                                            <option value="{{ __($service->id) }}">{{ __($service->title) }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="department" class="form-label">{{ __('دپارتمان') }}</label>
+                                    <select id="department" name="department_id" class="form-control">
+                                        <option value="" disabled
+                                                selected>{{ __('یک گزینه را انتخاب کنید ...') }}</option>
+                                        @foreach($departments as $department)
+                                            <option
+                                                value="{{ __($department->id) }}">{{ __($department->name) }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject" class="form-label">{{ __('موضوع') }}</label>
+                                    <input id="subject" name="subject" class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label for="content" class="form-label">{{ __('متن') }}</label>
+                                    <textarea id="content" name="content" class="form-control" rows="5"></textarea>
+                                </div>
 
-                    <form action="{{ route('tickets.store') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="service">{{ __('سرویس') }}</label>
-                            <select id="service" name="service_id" class="form-control">
-                                <option value="" disabled selected>{{ __('یک سرویس انتخاب کنید ...') }}</option>
-                                @foreach($services as $service)
-                                    <option value="{{ __($service->id) }}">{{ __($service->title) }}</option>
-                                @endforeach
-                            </select>
+                                <button type="submit" class="btn btn-primary mt-8">
+                                    {{ __('ایجاد') }}
+                                </button>
                         </div>
-                        <div class="form-group">
-                            <label for="department" class="form-label">{{ __('دپارتمان') }}</label>
-                            <select id="department" name="department_id" class="form-control">
-                                <option value="" disabled selected>{{ __('یک گزینه را انتخاب کنید ...') }}</option>
-                                @foreach($departments as $department)
-                                    <option value="{{ __($department->id) }}">{{ __($department->name) }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject" class="form-label">{{ __('موضوع') }}</label>
-                            <input id="subject" name="subject" class="form-control" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="content" class="form-label">{{ __('متن') }}</label>
-                            <textarea id="content" name="content" class="form-control" rows="5"></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary mt-8">
-                            {{ __('ایجاد') }}
-                        </button>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

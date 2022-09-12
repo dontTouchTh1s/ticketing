@@ -41,6 +41,11 @@
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
+                                    <label for="service">{{ __('فرستنده') }}</label>
+                                    <input id="service" class="form-control" type="text" readonly
+                                           value="{{ __($ticket['customer']) }}">
+                                </div>
+                                <div class="form-group">
                                     <label for="service">{{ __('سرویس') }}</label>
                                     <input id="service" class="form-control" type="text" readonly
                                            value="{{ __($ticket['service']) }}">
@@ -59,9 +64,13 @@
                                 <div class="form-group">
                                     <label for="content" class="form-label">{{ __('متن') }}</label>
                                     <textarea id="content" name="content" class="form-control" rows="3" readonly>
-                                {{ __($ticket['content']) }}
-                            </textarea>
+                                        {{ __($ticket['content']) }}
+                                    </textarea>
                                 </div>
+
+                                <a class="btn btn-secondary" href="{{ route('replies', $ticket['id']) }}">
+                                    {{ __("مشاهده پاسخ ها") }}
+                                </a>
                             </form>
                         </div>
                     </div>
@@ -75,9 +84,10 @@
                         <div class="card-body">
                             <p/> میتوانید تیکت را به دپارتمان دیگری ارجاع بدهید.
                             <div class="col-12">
+                                <!-- Open Model -->
                                 <button class="btn btn-outline-primary col-12" data-toggle="modal"
                                         data-target="#changeDepartmentModal"
-                                        type="submit">{{ __('تغییر دپارتمان') }}</button>
+                                        type="button">{{ __('تغییر دپارتمان') }}</button>
                             </div>
                         </div>
 
@@ -91,12 +101,13 @@
                         <div class="card-body">
                             <p/>می توانید تیکت را از این قسمت غیر فعال کنید. پس از عملیات نمیتوان به تیکت پاسخ یا گزارشی
                             اضافه کرد.
-                            <form action="{{ route('tickets.deactivate', $ticket['id']) }}"
+                            <form action="{{ route('tickets.deactivate') }}"
                                   method="POST">
                                 @method('PATCH')
                                 @csrf
+                                <input type="hidden" name="ticket" value="{{ __($ticket['id']) }}">
                                 <button class="btn btn-outline-primary col-12"
-                                        type="submit">{{ __('مدیریت') }}</button>
+                                        type="submit">{{ __('غیر فعال کردن') }}</button>
                             </form>
                         </div>
                     </div>
@@ -104,22 +115,23 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="changeDepartmentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="changeDepartmentModal" tabindex="-1" aria-labelledby="changeDepartmentModal"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">تغییر دپارتمان تیکت</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="changeDepartmentModal">تغییر دپارتمان تیکت</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p/> برای ارجاع دادن این تیکت به یک دپارتمان دیگر دپارتمان مورد نظر را انتخاب کنید و بر روی دکمه
                         تغییر کلیک کنید.
-                        <form action="{{ route('tickets.change_department', $ticket['id'])  }}" method="POST"
-                              id="change-department-form">
+                        <form action="{{ route('tickets.change_department')  }}" method="POST"
+                              id="modal-form">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
+                                <input type="hidden" name="ticket" value="{{ __($ticket['id']) }}"/>
                                 <label for="department"></label>
                                 <select name="department" id="department" class="form-control">
                                     @foreach($departments as $department)
@@ -135,9 +147,9 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
 
-                        <button type="submit" class="btn btn-primary" id="change-department-submit">
+                        <button type="submit" class="btn btn-primary" id="modal-form-submit">
                             تغییر
                         </button>
 
