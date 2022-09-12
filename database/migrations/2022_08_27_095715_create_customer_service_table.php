@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -14,8 +13,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('customer_service', function (Blueprint $table) {
-            $table->integer('customer_id');
-            $table->integer('service_id');
+            $table->foreignId('customer_id')->constrained();
+            $table->foreignId('service_id')->constrained();
             $table->dateTime('started_at');
             $table->dateTime('end_at');
             $table->boolean('active');
