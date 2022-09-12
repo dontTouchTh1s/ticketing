@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Ticket\Report;
+namespace App\Http\Controllers\Tickets\Report;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Report\StoreReportRequest;

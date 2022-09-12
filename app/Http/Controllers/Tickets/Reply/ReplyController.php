@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Ticket\Reply;
+namespace App\Http\Controllers\Tickets\Reply;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reply\StoreReplyRequest;
