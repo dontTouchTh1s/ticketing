@@ -5,10 +5,16 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Reply;
 use App\Models\Ticket;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ReportableController extends Controller
 {
+    /**
+     * Get reportable object information and return them, reportable can be ticket or reply
+     * @params Request
+     * @return JsonResponse
+     */
     public function getReportableInfo(Request $request)
     {
         $data = $request->validate([
