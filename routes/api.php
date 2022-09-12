@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\ReportSenderController;
+use App\Http\Controllers\API\ReportableController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('report-sender', [ReportSenderController::class, 'get'])->name('report.sender.get');
+Route::post('report-sender', [ReportableController::class, 'getReportableInfo'])->name('report.sender.get');

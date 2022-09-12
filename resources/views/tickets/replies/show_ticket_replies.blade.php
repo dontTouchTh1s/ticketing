@@ -70,6 +70,7 @@
                                                    value="{{ __($ticket['subject']) }}">
                                         </div>
                                     </div>
+                                </div>
                             </form>
                         </div>
                         <div class="card card-secondary card-replies">
@@ -89,7 +90,7 @@
                                                 <div class="dropdown">
                                                     <button class="reply-more-info dropdown-toggle"
                                                             type="button" id="dropdownMenuButton"
-                                                            data-toggle="dropdown"
+                                                            data-bs-toggle="dropdown"
                                                             aria-haspopup="true"
                                                             aria-expanded="false">
                                                         ...
@@ -99,8 +100,8 @@
                                                         <a class="dropdown-item" href="#">یچیزی</a>
                                                         <a class="dropdown-item" href="#">کپی</a>
                                                         <a class="dropdown-item report-reply" href="#"
-                                                           data-toggle="modal"
-                                                           data-target="#reportReplyModal">گزارش</a>
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#reportReplyModal">گزارش</a>
                                                     </div>
                                                 </div>
 
@@ -134,7 +135,7 @@
                                                     <div class="dropdown">
                                                         <button class="reply-more-info dropdown-toggle"
                                                                 type="button" id="dropdownMenuButton"
-                                                                data-toggle="dropdown"
+                                                                data-bs-toggle="dropdown"
                                                                 aria-haspopup="true"
                                                                 aria-expanded="false">
                                                             ...
@@ -144,8 +145,8 @@
                                                             <a class="dropdown-item" href="#">یچیزی</a>
                                                             <a class="dropdown-item" href="#">کپی</a>
                                                             <a class="dropdown-item report-reply" href="#"
-                                                               data-toggle="modal"
-                                                               data-target="#reportReplyModal">گزارش</a>
+                                                               data-bs-toggle="modal"
+                                                               data-bs-target="#reportReplyModal">گزارش</a>
                                                         </div>
                                                     </div>
 
@@ -190,7 +191,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="reportReplyModal">گزارش</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p/>در صورت مشاهده محتوای خلاف قوانین یا مواردی که نیاز به اطلاع رسانی به مدیر دارد میتوانید از
@@ -210,7 +211,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
 
                     <button type="submit" class="btn btn-primary" id="modal-form-submit">
                         ارسال

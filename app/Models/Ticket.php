@@ -47,9 +47,4 @@ class Ticket extends Model
     {
         return $this->morphMany(Report::class, 'reportable');
     }
-
-    public function getReportableName()
-    {
-        return $this->subject;
-    }
 }

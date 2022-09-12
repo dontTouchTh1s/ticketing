@@ -43,11 +43,14 @@
                                         <td>
                                             <div class="report-container">
                                                 <!-- Open Model -->
-                                                <button class="btn btn-outline-primary col-12" data-toggle="modal"
-                                                        data-target="#reportableInfoModal"
+                                                <button class="btn btn-outline-primary col-12" data-bs-toggle="modal"
+                                                        data-bs-target="#reportableInfoModal"
                                                         type="button">{{ 'مشاهده' }}</button>
-                                                <input type="hidden" id="{{ $report['reportable'] }}"
-                                                       class="report-id">
+                                                @csrf
+                                                <input type="hidden" id="{{ $report['reportable_id'] }}"
+                                                       class="reportable-id">
+                                                <input type="hidden" reportable_type="{{ $report['reportable_type'] }}"
+                                                       class="reportable-type">
                                             </div>
                                         </td>
                                         <td>{{ __($report['content']) }}</td>
@@ -77,36 +80,47 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="reportableInfoModal">تغییر دپارتمان تیکت</h5>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="reportableInfoModal">محتوای گزارش شده</h5>
+                        <button type="button" class="btn-close btn-close-modal" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p/> برای ارجاع دادن این تیکت به یک دپارتمان دیگر دپارتمان مورد نظر را انتخاب کنید و بر روی دکمه
-                        تغییر کلیک کنید.
-                        <form action="{{ route('tickets.change_department')  }}" method="POST"
-                              id="modal-form">
-                            @method('PATCH')
-                            @csrf
-                            <div class="form-group">
-                                <input type="hidden" name="ticket"/>
-                                <label for="department"></label>
-                                <select name="department" id="department" class="form-control">
-
-                                </select>
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
-                        </form>
+                        </div>
+                        <div class="reportable-info">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label>نوع متحوا</label>
+                                    <p class="form-control" id="reportable-type"></p>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>فرستنده</label>
+                                    <a href="#" class="form-control" id="sender-name"></a>
+                                </div>
+
+                                <div class="form-group col-lg-12">
+                                    <label>محتوا</label>
+                                    <p class="form-control" id="content"></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-
-                        <button type="submit" class="btn btn-primary" id="modal-form-submit">
-                            تغییر
+                        <button type="button" class="btn-close-modal btn btn-secondary" data-bs-dismiss="modal">
+                            بستن
                         </button>
+
+                        <a href="#" class="btn btn-primary" id="modal-form-submit">
+                            مشاهده کامل
+                        </a>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/js/AJAX.js"></script>
+    @vite(['resources/js/AJAX_request.js'])
 @endsection

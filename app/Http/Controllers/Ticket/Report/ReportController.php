@@ -25,7 +25,8 @@ class ReportController extends Controller
         foreach ($reports as $report) {
             $reportsInfo[] = [
                 'id' => $report->id,
-                'reportable' => $report->reportable()->first()->id,
+                'reportable_id' => $report->reportable()->first()->id,
+                'reportable_type' => $report->reportable()->first()::class,
                 'sender' => $report->sender()->first(),
                 'content' => $report->content,
             ];

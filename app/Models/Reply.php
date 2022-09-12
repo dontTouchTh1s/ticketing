@@ -28,11 +28,6 @@ class Reply extends Model
         return $this->morphMany(Report::class, 'reportable');
     }
 
-    public function getReportableName()
-    {
-        return $this->replyable()->first()->name;
-    }
-
     public function replyable()
     {
         return $this->morphTo();
