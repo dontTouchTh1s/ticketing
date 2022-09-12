@@ -443,3 +443,7 @@ ul {
     color: #d21714;
 
 }
+
+.reportable-info {
+    display: none;
+}
