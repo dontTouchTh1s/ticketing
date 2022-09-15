@@ -85,8 +85,8 @@
                             <p/> میتوانید تیکت را به دپارتمان دیگری ارجاع بدهید.
                             <div class="col-12">
                                 <!-- Open Model -->
-                                <button class="btn btn-outline-primary col-12" data-toggle="modal"
-                                        data-target="#changeDepartmentModal"
+                                <button class="btn btn-outline-primary col-12" data-bs-toggle="modal"
+                                        data-bs-target="#changeDepartmentModal"
                                         type="button">{{ __('تغییر دپارتمان') }}</button>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="changeDepartmentModal">تغییر دپارتمان تیکت</h5>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p/> برای ارجاع دادن این تیکت به یک دپارتمان دیگر دپارتمان مورد نظر را انتخاب کنید و بر روی دکمه
@@ -147,7 +147,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
 
                         <button type="submit" class="btn btn-primary" id="modal-form-submit">
                             تغییر
