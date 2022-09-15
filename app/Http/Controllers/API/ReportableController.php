@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ReportableController extends Controller
 {
     /**
-     * Get reportable object information and return them, reportable can be ticket or reply
+     * Get reportable object information and return them, reportable can be a ticket or reply
      * @params Request
      * @return JsonResponse
      */
@@ -19,7 +19,7 @@ class ReportableController extends Controller
     {
         $data = $request->validate([
             'id' => 'required',
-            'type' => 'required'
+            'type' => 'required',
         ]);
         if ($data['type'] == 'App\Models\Ticket') {
             $ticket = Ticket::find($data['id']);
