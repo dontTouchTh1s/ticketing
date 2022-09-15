@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Notifications;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateNotificationRequest;
+use App\Http\Requests\Notifications\UpdateNotificationRequest;
 use App\Models\Notification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
