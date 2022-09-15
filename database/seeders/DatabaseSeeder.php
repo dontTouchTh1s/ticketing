@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Notification;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,7 +21,8 @@ class DatabaseSeeder extends Seeder
             DepartmentSeeder::class,
             TicketSeeder::class,
             ReplySeeder::class,
-            ReportSeeder::class
+            ReportSeeder::class,
+            Notification::class
         ]);
 
     }

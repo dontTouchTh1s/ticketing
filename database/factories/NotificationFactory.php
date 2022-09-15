@@ -17,7 +17,9 @@ class NotificationFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => fake()->firstName,
+            'body' => fake()->text,
+            'type' => fake()->numberBetween(0, 2),
         ];
     }
 }
