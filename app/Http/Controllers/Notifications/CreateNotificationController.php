@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Notifications;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNotificationRequest;
+use App\Models\Notification;
+use App\Models\Service;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -15,7 +17,17 @@ class CreateNotificationController extends Controller
      */
     public function create()
     {
-        return view();
+        $services = Service::all();
+        $services_info = [];
+        foreach ($services as $service){
+            $services_info[] = [
+                'id' => $service->id,
+                'title' =>$service->title,
+            ];
+        }
+        return view('notification.create_notification')->with([
+            'services' => $services_info
+            ]);
     }
 
     /**
@@ -26,6 +38,13 @@ class CreateNotificationController extends Controller
      */
     public function store(StoreNotificationRequest $ticket)
     {
+        $data = $ticket->validated();
+        $notification = [
+            'title' => $data['title'],
+            'body' => $data['body'],
+            'type' => $data['type']
+        ];
+        Notification::create($notification);
         return redirect()->back();
     }
 }
