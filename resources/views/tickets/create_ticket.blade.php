@@ -72,8 +72,8 @@
                                 <button type="submit" class="btn btn-primary mt-8">
                                     {{ __('ایجاد') }}
                                 </button>
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
