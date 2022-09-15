@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Notifications\CreateNotificationController;
+use App\Http\Controllers\Notifications\DeleteNotificationController;
 use App\Http\Controllers\Notifications\NotificationController;
+use App\Http\Controllers\Notifications\UpdateNotificationController;
 use App\Http\Controllers\Tickets\CreateTicketController;
 use App\Http\Controllers\Tickets\ManageTicketController;
 use App\Http\Controllers\Tickets\Reply\ReplyController;
@@ -48,10 +51,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     });
     // Notifications routes
     Route::prefix('notifications')->group(function () {
-        Route::get('', [NotificationController::class, 'index'])->name('notification');
-        Route::get('', [CreateNotificationController::class, 'create'])->name('notification.create');
-        Route::post('', [CreateNotificationController::class, 'store'])->name('notification.store');
-        Route::delete('', [DeleteNotificationController::class])->name('notification.store');
+        Route::get('/', NotificationController::class)->name('notifications');
+        Route::get('create', [CreateNotificationController::class, 'create'])->name('notifications.create');
+        Route::post('store', [CreateNotificationController::class, 'store'])->name('notifications.store');
+        Route::get('edit',  [UpdateNotificationController::class, 'edit'])->name('notifications.edit');
+        Route::patch('update', [UpdateNotificationController::class, 'update'])->name('notifications.update');
+        Route::delete('delete', [DeleteNotificationController::class])->name('notifications.destroy');
     });
     // Services Routes
 });
