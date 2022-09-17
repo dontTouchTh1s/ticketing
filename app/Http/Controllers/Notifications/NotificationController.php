@@ -31,6 +31,7 @@ class NotificationController extends Controller
                 default => 'uknow',
             };
             $notification_info[] = [
+                'id' => $notification->id,
                 'title' => $notification->title,
                 'body' => $notification->body,
                 'type' => $type
