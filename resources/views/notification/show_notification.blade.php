@@ -26,27 +26,27 @@
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-striped table-bordered table-hover table-valign-middle">
+                                <caption>اعلان های ایجاد شده</caption>
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">عنوان</th>
                                     <th scope="col">متن</th>
                                     <th scope="col">نوع</th>
-                                    <th scope="col">سرویس</th>
-                                    <th class="text-center" scope="col">عملیات</th>
+                                    <th scope="col" class="text-center">سرویس</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($notifications as $notification)
                                     <tr>
-                                        <th>{{ __($loop->index) }}</th>
+                                        <th scope="row">{{ __($loop->index) }}</th>
                                         <td>{{ __($notification['title']) }}</td>
                                         <td>{{ __($notification['body']) }}</td>
                                         <td>{{ __($notification['type']) }}</td>
 
                                         <td>
                                             <div class="row">
-                                                <form class="col-6"
+                                                <form class="col-12"
                                                       action="{{ route('notifications.edit', $notification['id']) }}"
                                                       method="GET">
                                                     <button class="btn btn-primary"
