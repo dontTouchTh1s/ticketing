@@ -1,4 +1,4 @@
-async function AJAXRequest(url, method, body, token) {
+async function AJAXRequest(url, method, body) {
     let result;
     await fetch(url, {
         method: method,
@@ -25,7 +25,7 @@ let spinner = modal.querySelector('.spinner-border');
 let reportableInfo = modal.querySelector('.reportable-info');
 let buttons = modal.querySelectorAll('.btn-close-modal');
 for (let btnCloseModal of buttons) {
-    btnCloseModal.addEventListener('click', function (e) {
+    btnCloseModal.addEventListener('click', function () {
         spinner.style.display = "block";
         reportableInfo.style.display = "none";
     })
@@ -35,16 +35,16 @@ for (let report of reports) {
     let showInfoButton = report.querySelector("button");
     let id = report.querySelector('.reportable-id').id;
     let type = report.querySelector('.reportable-type').getAttribute('reportable_type');
-    let CSRF = report.querySelector('[name = "_toekn"]')
-    showInfoButton.addEventListener('click', () => getReportInfo(event, id, type, CSRF))
+    //let CSRF = report.querySelector('[name = "_token"]')
+    showInfoButton.addEventListener('click', () => getReportInfo(id, type))
 }
 
-async function getReportInfo(event, id, type, CSRF) {
+async function getReportInfo(id, type) {
     let postData = JSON.stringify({
         id: id,
         type: type
     });
-    let result = await AJAXRequest('/api/report-sender', 'POST', postData, CSRF);
+    let result = await AJAXRequest('/api/report-sender', 'POST', postData);
     modal.querySelector('#reportable-type').textContent = result['type'];
     let sender = modal.querySelector('#sender-name');
     sender.textContent = result['sender'];
