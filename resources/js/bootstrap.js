@@ -34,3 +34,22 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+// Convert english numbers to persian
+function ConvertNumberToPersian() {
+    let persian = { 0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹' };
+    function traverse(el) {
+        if (el.nodeType === 3) {
+            let list = el.data.match(/\d/g);
+            if (list != null && list.length !== 0) {
+                for (const element of list)
+                    el.data = el.data.replace(element, persian[element]);
+            }
+        }
+        for (const element of el.childNodes) {
+            traverse(element);
+        }
+    }
+    traverse(document.body);
+}
+ConvertNumberToPersian()
