@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             TicketSeeder::class,
             ReplySeeder::class,
             ReportSeeder::class,
-            Notification::class
+            NotificationSeeder::class
         ]);
 
     }
