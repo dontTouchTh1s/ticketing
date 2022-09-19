@@ -54,7 +54,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/', NotificationController::class)->name('notifications');
         Route::get('create', [CreateNotificationController::class, 'create'])->name('notifications.create');
         Route::post('store', [CreateNotificationController::class, 'store'])->name('notifications.store');
-        Route::get('edit',  [UpdateNotificationController::class, 'edit'])->name('notifications.edit');
+        Route::get('edit{notification}',  [UpdateNotificationController::class, 'edit'])->name('notifications.edit');
         Route::patch('update', [UpdateNotificationController::class, 'update'])->name('notifications.update');
         Route::delete('delete', [DeleteNotificationController::class])->name('notifications.destroy');
     });

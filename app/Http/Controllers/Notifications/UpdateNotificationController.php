@@ -16,9 +16,24 @@ class UpdateNotificationController extends Controller
      * Show form to edit notification
      * @return Application|Factory|View
      */
-    public function edit()
+    public function edit(Notification $notification)
     {
-        return view();
+        $type = match ($notification->type) {
+            Notification::NOTIFICATION_TYPE_WARNING => 'اخطار',
+            Notification::NOTIFICATION_TYPE_INFO => 'اطلاعیه',
+            Notification::NOTIFICATION_TYPE_DANGER => 'خطر',
+            default => 'uknow',
+        };
+        $notification_info = [
+            'id' => $notification->id,
+            'title' => $notification->title,
+            'body' => $notification->body,
+            'type' => $type
+        ];
+
+        return view('notification.edit_notification')->with([
+            'notification' => $notification_info
+        ]);
     }
 
     /**

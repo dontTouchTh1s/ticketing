@@ -19,6 +19,11 @@ class Customer extends Model
         return $this->belongsToMany(Service::class);
     }
 
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
+
     public function replies()
     {
         return $this->morphMany(Reply::class, 'replyable');
@@ -27,5 +32,10 @@ class Customer extends Model
     public function reports()
     {
         return $this->morphMany(Report::class, 'sender');
+    }
+
+    public function notifications()
+    {
+        return $this->morphToMany(Notification::class, 'notifable');
     }
 }

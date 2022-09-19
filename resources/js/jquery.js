@@ -1,1 +1,1 @@
-import 'jquery/dist/jquery';
+import 'jquery';

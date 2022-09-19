@@ -1,0 +1,40 @@
+.tag-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    display: flex;
+    padding: 8px;
+    overflow: hidden;
+    border-radius: 25px;
+    min-width: 46px;
+    justify-items: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    transition-duration: 300ms;
+    transition-timing-function: ease-out;
+    transform-origin: 100% 50%;
+}
+
+.tag .btn-close {
+    font-size: 0.8em;
+}
+
+.closing-tag {
+    text-wrap: none;
+    white-space: nowrap;
+    transform: scaleX(0%);
+    padding: 0;
+}
+
+.tag-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.tag-secondary {
+    background-color: var(--secondary);
+}

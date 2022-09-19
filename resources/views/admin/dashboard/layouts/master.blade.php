@@ -14,7 +14,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Styles and js -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
+    @vite(['resources/sass/app.scss', 'resources/css/app.css'])
 
 </head>
 <!--
@@ -63,7 +63,8 @@ to get the desired effect
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-@vite(['resources/js/jquery.js'])
+@vite(['resources/js/jquery.js', 'resources/js/app.js'])
+<script src="/bootstrap-select.js" type="module"></script>
 
 </body>
 </html>

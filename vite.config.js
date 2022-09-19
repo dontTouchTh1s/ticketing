@@ -10,6 +10,8 @@ export default defineConfig({
                 'resources/js/jquery.js',
                 'resources/js/js/adminlte.js',
                 'resources/js/AJAX_request.js',
+                'resources/js/tag.js',
+                'resources/js/bootstrap-select',
                 'resources/css/app.css'
             ],
             refresh: true,

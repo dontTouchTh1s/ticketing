@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Notification;
+use App\Models\Group;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Notification>
+ * @extends Factory<Group>
  */
-class NotificationFactory extends Factory
+class GroupFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,11 +17,9 @@ class NotificationFactory extends Factory
      */
     public function definition()
     {
-
         return [
-            'title' => fake()->firstName,
-            'body' => fake()->text,
-            'type' => fake()->numberBetween(0, 2),
+            'title' => fake()->jobTitle,
+            'description' => fake()->text,
         ];
     }
 }

@@ -1,15 +1,17 @@
 import _ from 'lodash';
-window._ = _;
-
 import 'bootstrap';
-
+import 'bootstrap-select';
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
-
 import axios from 'axios';
+
+$.fn.selectpicker.Constructor.BootstrapVersion = '5';
+
+window._ = _;
+
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -37,7 +39,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // Convert english numbers to persian
 function ConvertNumberToPersian() {
-    let persian = { 0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹' };
+    let persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
+
     function traverse(el) {
         if (el.nodeType === 3) {
             let list = el.data.match(/\d/g);
@@ -50,6 +53,8 @@ function ConvertNumberToPersian() {
             traverse(element);
         }
     }
+
     traverse(document.body);
 }
+
 ConvertNumberToPersian()

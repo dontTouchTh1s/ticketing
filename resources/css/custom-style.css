@@ -1,3 +1,4 @@
+@import url('tag.css');
 @font-face {
     font-family: Vazir;
     src: url('../fonts/Vazir.eot');
@@ -273,16 +274,7 @@ ul {
     font-family: 'Vazir', sans-serif;
 }
 
-/*---------------------------------- Persian Date Picker ---------------------------------- */
-
-.ck-toolbar {
-    display: flex;
-    justify-content: right;
-}
-
-.modal-footer > * {
-    margin: 0.25rem;
-}
+/*---------------------------------- Custom reply ---------------------------------- */
 
 .reply {
     position: relative;
@@ -398,7 +390,6 @@ ul {
     align-content: center;
 }
 
-
 .reply-content {
     padding: 16px;
     height: fit-content;
@@ -421,6 +412,24 @@ ul {
     border-bottom-right-radius: 25px;
 }
 
+
+
+.time-scope {
+    color: #cccccc;
+    text-align: center;
+}
+/*---------------------------------- CKEditor custom styles ---------------------------------- */
+
+.ck.ck-editor__editable > .ck-placeholder::before {
+    color: #d21714;
+
+}
+
+.ck-toolbar {
+    display: flex;
+    justify-content: right;
+}
+
 .ck-editor {
     width: 100% !important;
 }
@@ -432,16 +441,6 @@ ul {
 
 .ck.ck-editor__editable_inline ul {
     list-style: inside;
-}
-
-.time-scope {
-    color: #cccccc;
-    text-align: center;
-}
-
-.ck.ck-editor__editable > .ck-placeholder::before {
-    color: #d21714;
-
 }
 
 .reportable-info {
