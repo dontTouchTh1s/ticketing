@@ -12,9 +12,11 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('notification_service', function (Blueprint $table) {
-            $table->foreignId('notification_id')->constrained();
-            $table->foreignId('service_id')->constrained();
+        Schema::create('groups', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('description');
+            $table->integer('max_members')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('notification_service');
+        Schema::dropIfExists('groups');
     }
 };
