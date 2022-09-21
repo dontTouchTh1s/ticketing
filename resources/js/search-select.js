@@ -5,7 +5,7 @@ class Item {
 
     constructor(item) {
         this.item = item;
-        Item.items.push()
+        Item.items.push();
     }
 
     static findByTag(tag) {
@@ -32,8 +32,8 @@ class Item {
         tag.appendChild(span);
         tag.appendChild(button);
 
-        button.addEventListener('click', () => Item.removeByTag(this))
-        this.tag = tag
+        button.addEventListener('click', () => Item.removeByTag(this));
+        this.tag = tag;
     }
 
     removeTag() {
@@ -70,7 +70,7 @@ for (const searchSelect of searchSelects) {
         let icon = document.createElement('i');
         li.appendChild(icon);
         icon.classList.add('fa', 'fa-check');
-        let item = new Item(li)
+        let item = new Item(li);
         // Select dropdown items
         li.addEventListener('click', () => toggleItem(event, item));
 
@@ -98,12 +98,14 @@ for (const searchSelect of searchSelects) {
 
 
 function closeSearch(event) {
-    if (event.target.closest('.search-select') !== currentSearchSelect && currentSearchSelect != null) {
+    'use strict';
+    if (event.target.closest('.search-select') !== currentSearchSelect && currentSearchSelect !== null) {
         currentSearchSelect.removeAttribute('toggle');
     }
 }
 
 function openSearch(event) {
+    'use strict';
     currentSearchSelect = event.target.closest('.search-select');
     currentSearchSelect.setAttribute('toggle', '');
 }
@@ -114,7 +116,7 @@ function toggleItem(event, item) {
     if (li.hasAttribute('selected')) {
         item.createTag(li.innerText);
     } else {
-        item.removeTag()
+        item.removeTag();
     }
 
     let options = li.closest('.search-select').querySelector('.select-bar').querySelectorAll('option');

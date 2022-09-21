@@ -16,5 +16,9 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
+        "admin-lte": "^3.2.0"
+    },
+    "jshintConfig": {
+        "esversion": 6
     }
 }

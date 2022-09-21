@@ -63,6 +63,7 @@ to get the desired effect
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-@vite(['resources/js/jquery.js', 'resources/js/app.js'])
+@vite(['resources/js/app.js', 'resources/js/js/dashboard.js'])
+
 </body>
 </html>

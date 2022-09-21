@@ -7,8 +7,7 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
-                'resources/js/jquery.js',
-                'resources/js/js/adminlte.js',
+                'resources/js/js/dashboard.js',
                 'resources/js/AJAX_request.js',
                 'resources/js/tag.js',
                 'resources/js/search-select.js',
