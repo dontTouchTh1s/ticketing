@@ -1,14 +1,12 @@
 import _ from 'lodash';
 import 'bootstrap';
-import 'bootstrap-select';
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 import axios from 'axios';
-
-$.fn.selectpicker.Constructor.BootstrapVersion = '5';
 
 window._ = _;
 
