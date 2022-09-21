@@ -12,6 +12,11 @@ class Notification extends Model
     public const NOTIFICATION_TYPE_DANGER = 0;
     public const NOTIFICATION_TYPE_INFO = 1;
     public const NOTIFICATION_TYPE_WARNING = 2;
+    protected $fillable = [
+        'title',
+        'body',
+        'type',
+    ];
 
     public function groups()
     {

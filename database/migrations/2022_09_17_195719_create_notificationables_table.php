@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('notifables', function (Blueprint $table) {
-            $table->foreignId('notification_id');
+            $table->foreignId('notification_id')->constrained();
             $table->morphs('notifable');
             $table->timestamps();
         });

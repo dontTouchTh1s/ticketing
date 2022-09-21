@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Notifications;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class StoreNotificationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class StoreNotificationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'services_id' => 'required_without::customers_id,groups_id',
+            'customers_id' => 'required_without:services_id,groups_id',
+            'groups_id' => 'required_without:customers_id, services_id',
+            'title' => 'required',
+            'body' => 'required',
+            'type' => 'required|integer'
         ];
     }
 }

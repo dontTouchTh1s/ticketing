@@ -11,7 +11,7 @@ export default defineConfig({
                 'resources/js/js/adminlte.js',
                 'resources/js/AJAX_request.js',
                 'resources/js/tag.js',
-                'resources/js/bootstrap-select',
+                'resources/js/search-select.js',
                 'resources/css/app.css'
             ],
             refresh: true,

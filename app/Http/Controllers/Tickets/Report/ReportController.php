@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Tickets\Report;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Report\StoreReportRequest;
-use App\Http\Requests\UpdateReportRequest;
+use App\Http\Requests\Report\UpdateReportRequest;
 use App\Models\Report;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;

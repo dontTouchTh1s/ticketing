@@ -1,4 +1,5 @@
 @import url('tag.css');
+
 @font-face {
     font-family: Vazir;
     src: url('../fonts/Vazir.eot');
@@ -413,11 +414,11 @@ ul {
 }
 
 
-
 .time-scope {
     color: #cccccc;
     text-align: center;
 }
+
 /*---------------------------------- CKEditor custom styles ---------------------------------- */
 
 .ck.ck-editor__editable > .ck-placeholder::before {
@@ -441,6 +442,85 @@ ul {
 
 .ck.ck-editor__editable_inline ul {
     list-style: inside;
+}
+
+/*---------------------------------- Custom search select component styles ---------------------------------- */
+.search-select {
+    position: relative;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    gap: 8px;
+    width: 100%;
+    background-color: white;
+}
+
+
+.search-bar {
+}
+
+.search-select .search-bar-container .btn-close {
+    font-size: 0.8rem;
+}
+
+.search-select .select-bar {
+    width: 0.5px;
+    visibility: hidden;
+    border: none;
+    padding: 0;
+    position: absolute;
+}
+
+.dropdown-select {
+    list-style: none;
+    display: none;
+}
+
+.search-select[toggle] .dropdown-select {
+    display: block;
+    position: absolute;
+    top: 46px;
+    width: 100%;
+    background-color: white;
+    border: 0.7px solid #afafaf;
+    border-radius: 8px;
+    overflow: hidden;
+    transition-duration: 100ms;
+}
+
+.search-select[toggle] .dropdown-select li {
+    position: relative;
+    padding: 6px;
+    cursor: pointer;
+    transition-duration: 100ms;
+}
+
+.search-select[toggle] .dropdown-select li:hover {
+    background-color: #eaeaea;
+}
+
+.search-select[toggle] .dropdown-select li[selected] {
+    background-color: #247eb7 !important;
+    color: white;
+}
+
+.search-select[toggle] .dropdown-select li i {
+    display: none;
+}
+
+.search-select[toggle] .dropdown-select li[selected] i {
+    display: block;
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
 }
 
 .reportable-info {

@@ -20,7 +20,7 @@
 <!--
 BODY TAG OPTIONS:
 =================
-Apply one or more of the following classes to to the body tag
+Apply one or more of the following classes to  the body tag
 to get the desired effect
 |---------------------------------------------------------|
 |LAYOUT OPTIONS | sidebar-collapse                        |
@@ -64,7 +64,5 @@ to get the desired effect
 
 <!-- REQUIRED SCRIPTS -->
 @vite(['resources/js/jquery.js', 'resources/js/app.js'])
-<script src="/bootstrap-select.js" type="module"></script>
-
 </body>
 </html>
