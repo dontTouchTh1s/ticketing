@@ -40,49 +40,52 @@
                         </div>
                         <div class="card-body">
                             <form>
-                                <div class="form-group">
-                                    <label>گروه یا سرویس</label>
-                                    <div class="tag-container">
-                                        <div class="tag tag-primary">
-                                            <span>همه مشتری ها</span>
-                                            <button type="button" class="btn-close"></button>
-                                        </div>
-                                        <div class="tag tag-primary">
-                                            <span>همه مشتری ها</span>
-                                            <button type="button" class="btn-close"></button>
-                                        </div>
-                                        <div class="tag tag-primary">
-                                            <span>همه مشتری ها</span>
-                                            <button type="button" class="btn-close"></button>
-                                        </div>
-                                        <div class="tag tag-primary">
-                                            <span>همه مشتری ها</span>
-                                            <button type="button" class="btn-close"></button>
-                                        </div>
-                                        <div class="tag tag-primary">
-                                            <span>همه مشتری ها</span>
-                                            <button type="button" class="btn-close"></button>
-                                        </div>
-                                        <div class="tag tag-primary">
-                                            <span>همه مشتری ها</span>
-                                            <button type="button" class="btn-close"></button>
-                                        </div>
-                                        <div class="tag tag-primary">
-                                            <span>همه مشتری ها</span>
-                                            <button type="button" class="btn-close"></button>
-                                        </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="service">{{ __('سرویس ها') }}</label>
+                                    <div class="search-select">
+                                        <select id="service" name="services_id[]" class="form-control select-bar"
+                                                multiple>
+                                            <option value="" disabled
+                                                    selected>{{ __('یک سرویس انتخاب کنید ...') }}</option>
+                                            @foreach($services as $service)
+                                                <option
+                                                    value="{{ __($service['id']) }}"
+                                                    selected="{{ $service['selected'] }}">{{ __($service['title']) }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="service">{{ __('عنوان') }}</label>
-                                    <input id="service" class="form-control" type="text"
-                                           value="{{ __($notification['title']) }}">
+
+                                <div class="form-group col-lg-4">
+                                    <label for="groups">{{ __('گروه ها') }}</label>
+                                    <div class="search-select">
+                                        <select id="groups" name="groups_id[]" class="form-control select-bar"
+                                                multiple>
+                                            <option value="" disabled
+                                                    selected>{{ __('یک گروه انتخاب کنید ...') }}</option>
+                                            @foreach($groups as $group)
+                                                <option
+                                                    value="{{ __($group['id']) }}"
+                                                    selected="{{ $group['selected'] }}">{{ __($group['title']) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="content" class="form-label">{{ __('متن') }}</label>
-                                    <textarea id="content" name="content" class="form-control" rows="3">
-                                        {{ __($notification['body']) }}
-                                    </textarea>
+
+                                <div class="form-group col-lg-4">
+                                    <label for="customers">{{ __('مشتری ها') }}</label>
+                                    <div class="search-select">
+                                        <select id="customers" name="customers_id[]" class="form-control select-bar"
+                                                multiple>
+                                            <option value="" disabled
+                                                    selected>{{ __('یک مشتری انتخاب کنید ...') }}</option>
+                                            @foreach($customers as $customer)
+                                                <option
+                                                    value="{{ __($customer['id']) }}"
+                                                    selected="{{ $customer['selected'] }}">{{ __($customer['name']) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </form>
                         </div>

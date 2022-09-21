@@ -100,9 +100,10 @@
                                     <select id="type" name="type" class="form-control">
                                         <option value="" disabled
                                                 selected>{{ __('نوع اعلان را انتخاب کنید ...') }}</option>
-                                        <option value="0">{{ 'اخطار' }}</option>
-                                        <option value="1">{{ 'خطر' }}</option>
-                                        <option value="2">{{ 'اطلاعیه' }}</option>
+                                        @foreach($types as $type)
+                                            <option
+                                                value="{{ __($type['id']) }}">{{ __($type['title']) }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">

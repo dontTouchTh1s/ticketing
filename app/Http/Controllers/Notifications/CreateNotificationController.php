@@ -16,25 +16,13 @@ class CreateNotificationController extends Controller
     /**
      * store new notification to database
      *
-     * @param StoreNotificationRequest $ticket
+     * @param StoreNotificationRequest $request
      * @return RedirectResponse
      */
-    public function store(StoreNotificationRequest $ticket)
+    public function store(StoreNotificationRequest $request)
     {
 
-        $data = $ticket->validated();
-        $customers = [];
-        foreach ($data['customers_id'] as $customer) {
-            $customers[] = Customer::find($customer);
-        }
-        $services = [];
-        foreach ($data['services_id'] as $service) {
-            $services[] = Service::find($service);
-        }
-        $groups = [];
-        foreach ($data['groups_id'] as $group) {
-            $groups[] = Group::find($group);
-        }
+        $data = $request->validated();
 
         $notification = new Notification();
         $notification->title = $data['title'];
@@ -42,9 +30,9 @@ class CreateNotificationController extends Controller
         $notification->type = $data['type'];
         $notification->save();
 
-        $notification->customers()->sync($data['customers_id']);
-        $notification->services()->sync($data['services_id']);
-        $notification->groups()->sync($data['groups_id']);
+        $notification->customers()->attach($data['customers_id']);
+        $notification->services()->attach($data['services_id']);
+        $notification->groups()->attach($data['groups_id']);
         $notification->save();
 
         return redirect()->back();
@@ -56,35 +44,45 @@ class CreateNotificationController extends Controller
      */
     public function create()
     {
-        $services = Service::all();
-        $groups = Group::all();
-        $customers = Customer::all();
         $services_info = [];
         $groups_info = [];
         $customers_info = [];
+        $types = [];
 
-        foreach ($services as $service) {
+        foreach (Service::all() as $service) {
             $services_info[] = [
                 'id' => $service->id,
                 'title' => $service->title,
             ];
         }
-        foreach ($groups as $group) {
+        foreach (Group::all() as $group) {
             $groups_info[] = [
                 'id' => $group->id,
                 'title' => $group->title,
             ];
         }
-        foreach ($customers as $customer) {
+        foreach (Customer::all() as $customer) {
             $customers_info[] = [
                 'id' => $customer->id,
                 'name' => $customer->name,
             ];
         }
+        foreach (Notification::all() as $notification)
+            $types [] = [
+                'id' => $notification->type,
+                'title' => match ($notification->type) {
+                    Notification::NOTIFICATION_TYPE_WARNING => 'اخطار',
+                    Notification::NOTIFICATION_TYPE_INFO => 'اطلاعیه',
+                    Notification::NOTIFICATION_TYPE_DANGER => 'خطر',
+                    default => 'unknown',
+                }
+            ];
+
         return view('notification.create_notification')->with([
             'services' => $services_info,
             'groups' => $groups_info,
-            'customers' => $customers_info
+            'customers' => $customers_info,
+            'types' => $types
         ]);
     }
 }
